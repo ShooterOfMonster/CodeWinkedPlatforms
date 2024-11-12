@@ -24,6 +24,8 @@ public class FreeMarkerTest {
 
         // 设置模板文件使用的字符集
         configuration.setDefaultEncoding("UTF-8");
+        // 设置数字格式化的格式 ----> 不要 “,”分隔符
+        configuration.setNumberFormat("0.######");
 
         // 创建模板对象，加载指定的模板
         Template template = configuration.getTemplate("myweb.html.ftl");
