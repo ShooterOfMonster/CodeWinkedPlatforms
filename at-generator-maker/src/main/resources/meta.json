@@ -1,13 +1,14 @@
 {
-  "name": "acm-template-pro-generator",
+  "name": "at-generator-maker",
   "description": "ACM 示例模板生成器",
   "basePackage": "com.at",
   "version": "1.0",
-  "author": "aotian",
+  "author": "傲天灬曜星",
   "createTime": "2024-11-16",
   "fileConfig": {
-    "inputRootPath": "D:/Java_subject/CodeSuggestion/后端工程/at-generator/at-generator-demo-projects/acm-template-pro",
+    "inputRootPath": ".source/acm-template-pro",
     "outputRootPath": "generated",
+    "sourceRootPath": "D:/Java_subject/CodeSuggestion/后端工程/at-generator/at-generator-demo-projects/acm-template-pro",
     "type": "dir",
     "files": [
       {
@@ -17,21 +18,35 @@
         "generateType": "dynamic"
       },
       {
-        "inputPath": ".gitignore",
-        "outputPath": ".gitignore",
-        "type": "file",
-        "generateType": "static"
-      },
-      {
-        "inputPath": "README.md",
-        "outputPath": "README.md",
-        "type": "file",
-        "generateType": "static"
+        "groupKey": "git",
+        "groupName": "开源",
+        "type": "group",
+        "condition": "needGit",
+        "files": [
+          {
+            "inputPath": ".gitignore",
+            "outputPath": ".gitignore",
+            "type": "file",
+            "generateType": "static"
+          },
+          {
+            "inputPath": "README.md",
+            "outputPath": "README.md",
+            "type": "file",
+            "generateType": "static"
+          }
+        ]
       }
     ]
   },
   "modelConfig": {
     "models": [
+      {
+        "fieldName": "needGit",
+        "type": "boolean",
+        "description": "是否生成 .gitignore 文件",
+        "defaultValue": true
+      },
       {
         "fieldName": "loop",
         "type": "boolean",
@@ -40,18 +55,27 @@
         "abbr": "l"
       },
       {
-        "fieldName": "author",
-        "type": "String",
-        "description": "作者注释",
-        "defaultValue": "aotian",
-        "abbr": "a"
-      },
-      {
-        "fieldName": "outputText",
-        "type": "String",
-        "description": "输出信息",
-        "defaultValue": "sum = ",
-        "abbr": "o"
+        "groupKey": "mainTemplate",
+        "groupName": "核心模板",
+        "type": "MainTemplate",
+        "description": "用于生成核心模板文件",
+        "condition": "loop",
+        "models": [
+          {
+            "fieldName": "author",
+            "type": "String",
+            "description": "作者注释",
+            "defaultValue": "傲天灬曜星",
+            "abbr": "a"
+          },
+          {
+            "fieldName": "outputText",
+            "type": "String",
+            "description": "输出信息",
+            "defaultValue": "sum = ",
+            "abbr": "o"
+          }
+        ]
       }
     ]
   }
